@@ -35,7 +35,7 @@ def join_data(sql_statement, data_list):
         # If the element is an integer, leave it as is, otherwise wrap it in single quotes.
         data_str = [str(x) if is_digit(x) else "'{}'".format(x) for x in data]
         # Add the inner list as a row in the SQL statement, separated by commas.
-        joined_data += "({}),".format(", ".join(data_str))
+        joined_data += "({}),\n".format(", ".join(data_str))
     # Remove the trailing comma and add a semicolon to the end of the statement.
     return sql_statement + joined_data[:-1] + ";"
 
@@ -80,7 +80,10 @@ def take_input():
   data = convert_csv_to_list(f"{os.path.dirname(__file__)}\data.csv")
   return table, data
 
-table, data = take_input()
-result = join_data(f"INSERT INTO {table} VALUES ",data)
-pyperclip.copy(result)
-print(result)
+def main():
+    table, data = take_input()
+    result = join_data(f"INSERT INTO {table} VALUES ",data)
+    pyperclip.copy(result)
+    print(result)
+
+main()
