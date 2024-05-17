@@ -37,7 +37,7 @@ def join_data(sql_statement, data_list):
         # Add the inner list as a row in the SQL statement, separated by commas.
         joined_data += "({}),\n".format(", ".join(data_str))
     # Remove the trailing comma and add a semicolon to the end of the statement.
-    return sql_statement + joined_data[:-1] + ";"
+    return sql_statement + joined_data[:-2] + ";"
 
 
 
